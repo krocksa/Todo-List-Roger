@@ -21,6 +21,11 @@ const Home = () => {
 		copyAll.push(inputValue);
 		setAll(copyAll);		
 	}
+	function handleDelete(parameter) {
+		let copyAll = [...all];
+		copyAll.pop(inputValue);
+		setAll(copyAll);
+	}
 
 	return (
 		<div className="todolist">
@@ -33,11 +38,10 @@ const Home = () => {
 				{
 					all.map((one,index) => {
 						return(
-							<ListGroup>
-							<ListGroup.Item className="newOne" key={index}>
+							<div className="newOne" key={index}>								
 								{one}
-							</ListGroup.Item>
-							</ListGroup>
+								<button className="button" onClick={handleDelete}>X</button>
+							</div>
 						)
 					})
 				}
