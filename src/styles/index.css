@@ -10,3 +10,19 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body{
+    background: black;
+}
+.todolist{
+    height: 657px;
+    width: 800px;
+    background: wheat;
+    margin: auto;
+}
+.dentroDe{
+    height: 500px;
+    width: 500px;
+    background: #dad7d7;
+    margin: auto;
+    text-align: center;
+}
