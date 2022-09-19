@@ -18,8 +18,12 @@ const Home = () => {
 
 	function handleAdd(parameter) {
 		let copyAll = [...all];
-		copyAll.push(inputValue);
-		setAll(copyAll);		
+		if (parameter.key === 'Enter') {
+				
+			copyAll.push(inputValue);
+			setAll(copyAll);
+			setInputValue("")
+		}
 	}
 	function handleDelete(parameter) {
 		let copyAll = [...all];
@@ -32,7 +36,9 @@ const Home = () => {
 			<div className="dentroDe">
 				<h1>ALL TASKS</h1>
 			<div className="input">
-				<input type="text" placeholder="Input Task" value={inputValue} onChange={handleChange} />
+				<input type="text" placeholder="Input Task"
+				 value={inputValue} onChange={handleChange} 
+				 onKeyDown={handleAdd} />
 				<button onClick={handleAdd}>Add</button>
 			</div>
 				{
