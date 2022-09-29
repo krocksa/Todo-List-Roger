@@ -8,49 +8,55 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 const Home = () => {
 
-	const [ inputValue, setInputValue ] = useState('');
+	const [ input, setInput ] = useState('');
 	const [ all, setAll ] = useState([]);
+	const [status, setStatus] = useState("to-do");
 
-	function handleChange(parameter) {
-		const value = parameter.target.value;
-		setInputValue(value);
-	}
-
-	function handleAdd(parameter) {
-		let copyAll = [...all];
-		if (parameter.key === 'Enter') {
-				
-			copyAll.push(inputValue);
-			setAll(copyAll);
-			setInputValue("")
+	function handleAdd(e) {
+		if (e.key == "Enter"){
+			// let newTasks = [...tasks]
+			// newTasks.push(input)
+			setAll([...all,{label:input,status:status}])
+			setInput("")
 		}
 	}
-	function handleDelete(parameter) {
-		let copyAll = [...all];
-		copyAll.pop(inputValue);
-		setAll(copyAll);
+
+	const handleDelete = (currentIndex)=>{
+		let newTasks = all.filter((task, index)=> index != currentIndex)
+		setAll(newTasks)
 	}
 
 	return (
-		<div className="todolist">
-			<div className="dentroDe">
-				<h1>ALL TASKS</h1>
-			<div className="input">
-				<input type="text" placeholder="Input Task"
-				 value={inputValue} onChange={handleChange} 
-				 onKeyDown={handleAdd} />
-				<button onClick={handleAdd}>Add</button>
-			</div>
-				{
-					all.map((one,index) => {
-						return(
-							<div className="newOne" key={index}>								
-								{one}
-								<button className="button" onClick={handleDelete}>X</button>
-							</div>
-						)
-					})
-				}
+		<div className="title">
+			<h2>ToDo List Roger.js</h2>
+				<div className="todolist">
+					<div className="dentroDe">
+						<h3>ALL TASKS</h3>
+					<div className="input">
+					<input 
+						type="text" placeholder="Input Task"
+						onChange={(e)=>{setInput(e.target.value)}} 
+						value={input} 
+						onKeyDown={handleAdd}
+					/>
+					</div>
+					<ListGroup>
+						{
+							all.map((task,index)=>{
+								return (
+									<ListGroup.Item className="newOne" key={index} >
+										<p>
+											{task.label}
+										</p>
+
+										<button className="button" onClick={(e) => handleDelete(index)}>
+											<span><i>X</i></span>
+										</button>
+									</ListGroup.Item>
+							)})
+						}
+					</ListGroup>
+				</div>
 			</div>
 		</div>
 	);
