@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
 
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
 
 	const [ input, setInput ] = useState('');
@@ -14,8 +9,6 @@ const Home = () => {
 
 	function handleAdd(e) {
 		if (e.key == "Enter"){
-			// let newTasks = [...tasks]
-			// newTasks.push(input)
 			setAll([...all,{label:input,status:status}])
 			setInput("")
 		}
